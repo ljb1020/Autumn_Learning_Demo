@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <input type="submit" id="input">
+
+    <script type="text/javascript">
+        let btn = document.querySelector("#input");
+        btn.addEventListener('click', throtte(submit, 2000));
+
+        function submit(e) {
+            console.log(e);
+            console.log(this);
+            console.log(1);
+
+        }
+
+        function throtte(fn, delay) {
+            let preTime = Date.now();
+            return function (...args) {
+                if (Date.now() - preTime > delay) {
+                    fn.apply(this, args);
+                    preTime = Date.now();
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

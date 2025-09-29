@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <input type="submit" id="input">
+
+    <script type="text/javascript">
+        let btn = document.querySelector("#input");
+        btn.addEventListener('click', debounce(submit, 2000));
+
+        function submit(e) {
+            console.log(e);
+            console.log(this);
+            console.log(1);
+
+        }
+
+        function debounce(fn, waitTime) {
+            let time = null;
+            return function (...args) {
+                if (time) clearTimeout(time);
+                time = setTimeout(() => {
+                    fn.apply(this, args)
+                }, waitTime);
+            }
+        }
+    </script>
+</body>
+
+</html>
